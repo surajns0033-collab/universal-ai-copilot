@@ -6,11 +6,14 @@ Universal AI Copilot is an open-source, multimodal knowledge-to-action workspace
 
 It is not a chat box and it is not a generic AI wrapper. The product *is* the Gemma 4 reasoning step: content goes in, understanding comes out.
 
-Built for the **MLH Hacktoberfest Hack Day (Navi Mumbai × Piyush Sahu)** and submitted to **one** category:
+Built for the **MLH Hacktoberfest Hack Day (Navi Mumbai × Piyush Sahu)** and submitted to:
 
 - 🏆 **Best Open-Source AI Project** — a category sponsored by DigitalOcean
+- 🌊 **Best Use of DigitalOcean** — this app is containerized and deployed on **DigitalOcean App Platform**
 
-> **Clarification on DigitalOcean.** "DigitalOcean" appears only as the **sponsor name of the award category**. This project does **not** use any DigitalOcean product, API, account, or service. The only external integrations are the **Gemini API** (official `@google/genai` SDK) and the **Gemma 4** open-weight model. Per the event rule (one project = one category), this repository is the **Open-Source** submission; a separate small app, **SnapStudy**, is the **Best Use of Gemma 4** submission.
+> **DigitalOcean usage.** The product is packaged with a multi-stage [`Dockerfile`](Dockerfile) (Next.js `output: 'standalone'` → `node server.js` on port `8080`) and runs on **DigitalOcean App Platform**, which builds the image from this repository, runs the container, performs health checks, and serves it over HTTPS. The deployment spec lives in [`app.yaml`](app.yaml); `GEMINI_API_KEY` is supplied as an encrypted **secret** environment variable and is never committed. The core intelligence is still the **Gemini API** (official `@google/genai` SDK) calling the **Gemma 4** open-weight model. A separate small app, **SnapStudy**, is the **Best Use of Gemma 4** submission.
+
+> **Live demo:** a hosted URL will be added here once the App Platform deployment is verified. No links are fabricated — the URL is published only after the health check and a real Gemma 4 call pass.
 
 ---
 

@@ -1,0 +1,35 @@
+# DigitalOcean App Platform spec — Universal AI Copilot
+# Deploy options:
+#   A) CLI (needs a DO token):  doctl apps create --spec app.yaml
+#   B) Web UI (no token/card):  App Platform -> Create App -> import the GitHub
+#      repo -> choose "Dockerfile" -> add the env vars below -> Deploy
+name: universal-ai-copilot
+region: blr
+services:
+    - name: web
+      dockerfile_path: Dockerfile
+      source_dir: /
+      github:
+          repo: surajns0033-collab/universal-ai-copilot
+          branch: main
+          deploy_on_push: true
+      http_port: 8080
+      instance_count: 1
+      instance_size_slug: basic-xxs
+      health_check:
+          http_path: /api/analyze
+      envs:
+          # Set this in the DO UI (mark it as a SECRET). Never commit a real key.
+          - key: GEMINI_API_KEY
+            scope: RUN_TIME
+            type: SECRET
+            value: REPLACE_WITH_YOUR_GEMINI_KEY
+          - key: GEMMA_MODEL
+            scope: RUN_TIME
+            value: gemma-4-26b-a4b-it
+          - key: MAX_UPLOAD_MB
+            scope: RUN_TIME
+            value: '15'
+          - key: AI_REQUEST_TIMEOUT_MS
+            scope: RUN_TIME
+            value: '45000'
