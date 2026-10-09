@@ -268,7 +268,7 @@ Configuration is environment-driven and validated at request time (fail-fast). S
 
 | Variable | Required | Default | Description |
 | --- | --- | --- | --- |
-| `GEMINI_API_KEY` | ✅ | — | Server-only key for the Gemini API. **Never expose this to the client.** |
+| `GEMINI_API_KEY` | ✅ | — | Server-side API key for the Gemini API; not sent to the browser. |
 | `GEMMA_MODEL` | ❌ | `gemma-4-26b-a4b-it` | The Gemma model identifier. Single source of truth; never hardcoded in feature logic. |
 | `MAX_UPLOAD_MB` | ❌ | `15` | Maximum accepted upload size in megabytes. |
 | `AI_REQUEST_TIMEOUT_MS` | ❌ | `45000` | Abort timeout for an AI request, in milliseconds. |

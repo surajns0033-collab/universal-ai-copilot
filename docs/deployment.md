@@ -25,7 +25,7 @@ Set these in your hosting provider's **secret store** — never in the repositor
 
 | Variable | Required | Default | Notes |
 | --- | --- | --- | --- |
-| `GEMINI_API_KEY` | ✅ | — | Server-only. Never expose to the client. |
+| `GEMINI_API_KEY` | ✅ | — | Server-side only; not exposed to the browser. |
 | `GEMMA_MODEL` | ❌ | `gemma-4-26b-a4b-it` | The Gemma model identifier. |
 | `MAX_UPLOAD_MB` | ❌ | `15` | Maximum upload size. |
 | `AI_REQUEST_TIMEOUT_MS` | ❌ | `45000` | Per-request AI timeout. |
