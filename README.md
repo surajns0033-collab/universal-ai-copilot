@@ -14,7 +14,7 @@ Built for the **MLH Hacktoberfest Hack Day (Navi Mumbai × Piyush Sahu)** and su
 
 ---
 
-## Demo
+## Demo  https://universal-ai-copilot.vercel.app/
 
 **Judging flow (60–90 seconds):**
 
