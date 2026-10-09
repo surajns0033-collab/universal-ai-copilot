@@ -91,7 +91,8 @@ multi-stage `Dockerfile` (`node:20-alpine` → Next.js `output: 'standalone'` �
 container, performs health checks, and serves the app over HTTPS at the generated domain.
 
 - **Live URL:** https://universal-ai-copilot.vercel.app/
-- **Health check endpoint:** `GET /api/analyze` → `{ "ok": true, "ready": true, ... }`
+- **Health check endpoint:** `GET /api/analyze` → `200`
+  `{ "success": true, "data": { "ready": true, "model": "gemma-4-26b-a4b-it", "maxUploadBytes": 15728640 } }`
 - **Deployment spec:** `app.yaml` (region `blr`, `dockerfile_path: Dockerfile`,
   `http_port: 8080`, `health_check.http_path: /api/analyze`).
 - **Config:** `GEMINI_API_KEY` is supplied as an encrypted **secret** environment variable in
