@@ -47,3 +47,6 @@ yarn-error.log*
 
 # Separate sub-project kept in its own repository (SnapStudy)
 /snapstudy/
+
+# AI-agent tooling artifacts — must not ship in the product repository
+/.agents/
