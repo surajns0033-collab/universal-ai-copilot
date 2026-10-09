@@ -6,7 +6,8 @@
 .DESCRIPTION
     Uses the DigitalOcean REST API v2 directly, so it does NOT require the `doctl`
     CLI to be installed. It creates (or updates) an App Platform app that builds the
-    repository's Dockerfile and runs it on the free `basic-xxs` instance size.
+    repository's Dockerfile and runs it on the free `apps-s-1vcpu-0.5gb` instance
+    size (the current free slug; the legacy alias `basic-xxs` is deprecated).
 
     Secrets are read interactively with hidden input and are never printed, never
     written to disk, and never committed.
@@ -65,7 +66,7 @@ function Write-Warn([string]$Message) { Write-Host "    [!]  $Message" -Foregrou
 # --- 1. Read secrets with hidden input (never echoed) --------------------------
 Write-Host '============================================================' -ForegroundColor Magenta
 Write-Host '  DigitalOcean App Platform deploy - Universal AI Copilot' -ForegroundColor Magenta
-Write-Host '  Target instance size: basic-xxs (free tier)' -ForegroundColor Magenta
+Write-Host '  Target instance size: apps-s-1vcpu-0.5gb (free tier)' -ForegroundColor Magenta
 Write-Host '============================================================' -ForegroundColor Magenta
 
 $doTokenSecure = Read-Host '  DIGITALOCEAN_TOKEN (hidden)' -AsSecureString
@@ -111,7 +112,7 @@ if (-not $Create -and [string]::IsNullOrWhiteSpace($AppId)) {
 if ([string]::IsNullOrWhiteSpace($AppId) -and -not $Create) { $Create = $true }
 
 # --- 3. Build the App Platform spec (JSON) ------------------------------------
-Write-Step 'Building the App Platform spec (free tier: basic-xxs)'
+Write-Step 'Building the App Platform spec (free tier: apps-s-1vcpu-0.5gb)'
 
 # Prefer the repository app.yaml so the deployed spec stays in sync with the docs,
 # but compose it here as JSON so no YAML parser is required on Windows.
@@ -130,7 +131,7 @@ $spec = @{
             }
             http_port        = 8080
             instance_count   = 1
-            instance_size_slug = 'basic-xxs'   # free tier
+            instance_size_slug = 'apps-s-1vcpu-0.5gb'   # free tier (legacy alias: basic-xxs)
             health_check     = @{ http_path = '/api/analyze' }
             envs             = @(
                 @{ key = 'GEMINI_API_KEY';       scope = 'RUN_TIME'; type = 'SECRET'; value = $geminiKey }

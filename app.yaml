@@ -1,6 +1,8 @@
 # DigitalOcean App Platform spec — Universal AI Copilot
 #
-# Instance size is basic-xxs, which is DigitalOcean's FREE App Platform tier.
+# Instance size is apps-s-1vcpu-0.5gb, DigitalOcean's FREE App Platform tier.
+# The legacy alias "basic-xxs" still resolves to the same free plan but is marked
+# deprecated in the API spec, so the current slug is used here.
 #
 # Deploy options:
 #   A) One command (no doctl needed, uses the DO REST API):
@@ -24,7 +26,7 @@ services:
           deploy_on_push: true
       http_port: 8080
       instance_count: 1
-      instance_size_slug: basic-xxs
+      instance_size_slug: apps-s-1vcpu-0.5gb
       health_check:
           http_path: /api/analyze
       envs:

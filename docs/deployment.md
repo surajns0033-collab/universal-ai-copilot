@@ -44,7 +44,7 @@ Set these in your hosting provider's **secret store** — never in the repositor
 ### DigitalOcean App Platform (free tier)
 
 App Platform builds the repository's [`Dockerfile`](../Dockerfile) and runs it on the free
-`basic-xxs` instance size.
+`apps-s-1vcpu-0.5gb` instance size.
 
 1. Create a DigitalOcean **Personal Access Token** with read + write scope.
 2. Run the one-command deploy — it uses the DigitalOcean REST API, so `doctl` is **not**
@@ -54,7 +54,7 @@ App Platform builds the repository's [`Dockerfile`](../Dockerfile) and runs it o
    ```
    Paste the token and `GEMINI_API_KEY` at the hidden prompts; nothing you paste is echoed.
 3. Or import the public repository in the App Platform **web UI** (build type **Dockerfile**,
-   HTTP port **8080**, instance size **basic-xxs**, health check `GET /api/analyze`) and add the
+   HTTP port **8080**, instance size **apps-s-1vcpu-0.5gb**, health check `GET /api/analyze`) and add the
    same environment variables.
 4. The full runbook, including verification and troubleshooting, is in
    [`deploy-digitalocean.md`](deploy-digitalocean.md).

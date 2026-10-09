@@ -13,7 +13,7 @@ Built for the **MLH Hacktoberfest Hack Day (Navi Mumbai × Piyush Sahu)** and su
 
 > **DigitalOcean usage.** The product is packaged with a multi-stage [`Dockerfile`](Dockerfile) (Next.js `output: 'standalone'` → `node server.js` on port `8080`) and a **DigitalOcean App Platform** spec in [`app.yaml`](app.yaml) (region `blr`, `http_port: 8080`, health check `GET /api/analyze`). App Platform builds the image from this repository, runs the container, performs health checks, and serves it over HTTPS; `GEMINI_API_KEY` is supplied as an encrypted **secret** environment variable and is never committed. The core intelligence is the **Gemini API** (official `@google/genai` SDK) calling the **Gemma 4** open-weight model. A separate small app, **SnapStudy**, is the **Best Use of Gemma 4** submission.
 
-> **Live demo:** [**https://universal-ai-copilot.vercel.app/**](https://universal-ai-copilot.vercel.app/) — the current hosted deployment. The same codebase also ships a **DigitalOcean App Platform** deployment on the free `basic-xxs` tier via [`app.yaml`](app.yaml); deploy it with one command (`npm run deploy:do`) using the [`docs/deploy-digitalocean.md`](docs/deploy-digitalocean.md) runbook.
+> **Live demo:** [**https://universal-ai-copilot.vercel.app/**](https://universal-ai-copilot.vercel.app/) — the current hosted deployment. The same codebase also ships a **DigitalOcean App Platform** deployment on the free `apps-s-1vcpu-0.5gb` tier via [`app.yaml`](app.yaml); deploy it with one command (`npm run deploy:do`) using the [`docs/deploy-digitalocean.md`](docs/deploy-digitalocean.md) runbook.
 
 ---
 

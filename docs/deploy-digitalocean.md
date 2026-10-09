@@ -1,7 +1,10 @@
 # Deploying Universal AI Copilot to DigitalOcean (free tier)
 
-This runbook deploys the app to **DigitalOcean App Platform** on the **`basic-xxs`**
-instance size. App Platform builds the repository's multi-stage [`Dockerfile`](../Dockerfile)
+This runbook deploys the app to **DigitalOcean App Platform** on the
+**`apps-s-1vcpu-0.5gb`** instance size — DigitalOcean's current free plan. (The legacy
+alias `basic-xxs` still maps to the same free plan, but it is marked *deprecated* in the
+[API spec](https://docs.digitalocean.com/reference/api/), so the current slug is used.)
+App Platform builds the repository's multi-stage [`Dockerfile`](../Dockerfile)
 (`node:20-alpine` → Next.js `output: 'standalone'` → `node server.js` on port `8080`), runs the
 container, performs the health check, and serves it over HTTPS.
 
@@ -21,7 +24,7 @@ free instance size.
 
 1. **DigitalOcean account** — <https://cloud.digitalocean.com/registrations/new>
    A card is required for account verification, but the app itself runs on the free
-   `basic-xxs` instance size.
+   `apps-s-1vcpu-0.5gb` instance size.
 2. **A Gemini API key** with access to the Gemma model — <https://aistudio.google.com/app/apikey>
 3. The repository is **public** — <https://github.com/surajns0033-collab/universal-ai-copilot>
    App Platform can pull a public repo without a GitHub OAuth connection.
@@ -88,7 +91,7 @@ The **first** deploy takes several minutes (the container image is built). Watch
    as the build type.
 4. Set:
    - **HTTP port:** `8080`
-   - **Instance size:** `basic-xxs` (the free tier)
+   - **Instance size:** `apps-s-1vcpu-0.5gb` (the free tier)
    - **Region:** `blr` (Bangalore)
    - **Health check:** HTTP `GET /api/analyze`
 5. Add environment variables:

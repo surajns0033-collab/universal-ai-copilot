@@ -82,7 +82,7 @@ natively, and its output is parsed, validated, and rendered directly by the appl
 
 ### Category fit — Best Use of DigitalOcean
 > Two deployments of the same codebase: the primary live demo runs on Vercel, and the identical
-> container is deployed to **DigitalOcean App Platform on the free `basic-xxs` tier** using the
+> container is deployed to **DigitalOcean App Platform on the free `apps-s-1vcpu-0.5gb` tier** using the
 > one-command runbook (`npm run deploy:do`, see [`deploy-digitalocean.md`](deploy-digitalocean.md)).
 
 Universal AI Copilot ships a **DigitalOcean App Platform** deployment spec backed by a
@@ -91,7 +91,7 @@ multi-stage `Dockerfile` (`node:20-alpine` → Next.js `output: 'standalone'` �
 container, performs health checks, and serves the app over HTTPS at the generated domain.
 
 - **Live URL (Vercel demo):** https://universal-ai-copilot.vercel.app/
-- **DigitalOcean App Platform (free `basic-xxs` tier):** deploy with `npm run deploy:do`; the
+- **DigitalOcean App Platform (free `apps-s-1vcpu-0.5gb` tier):** deploy with `npm run deploy:do`; the
   generated `*.ondigitalocean.app` domain is the container deployment. Runbook:
   [`deploy-digitalocean.md`](deploy-digitalocean.md).
 - **Health check endpoint:** `GET /api/analyze` → `200`
@@ -179,7 +179,7 @@ npm run dev                    # http://localhost:3000
 ## DigitalOcean deployment runbook
 
 Full runbook: [`deploy-digitalocean.md`](deploy-digitalocean.md). The target is **App Platform
-on the free `basic-xxs` instance size**.
+on the free `apps-s-1vcpu-0.5gb` instance size**.
 
 **Path A — one command (needs a DO token; `doctl` not required):**
 
@@ -198,7 +198,7 @@ if it already exists, and prints the generated `*.ondigitalocean.app` live URL.
 3. Build type **Dockerfile**, **HTTP port 8080**.
 4. Add environment variables: `GEMINI_API_KEY` (**secret** / encrypted), `GEMMA_MODEL`
    = `gemma-4-26b-a4b-it`, `MAX_UPLOAD_MB` = `15`, `AI_REQUEST_TIMEOUT_MS` = `45000`.
-5. Instance size **basic-xxs** (free), region **blr**, health check `GET /api/analyze`.
+5. Instance size **apps-s-1vcpu-0.5gb** (free), region **blr**, health check `GET /api/analyze`.
 6. Create the app, wait for the build + health check to pass, then verify:
    - `GET /api/analyze` → `200 { "success": true, "data": { "ready": true, "model": "gemma-4-26b-a4b-it", "maxUploadBytes": 15728640 } }`
    - A real upload returns `200` with a Gemma 4 result.
