@@ -2,6 +2,8 @@
 const nextConfig = {
     reactStrictMode: true,
     poweredByHeader: false,
+    // Emit a self-contained server bundle for container/DigitalOcean deploys.
+    output: 'standalone',
     // Enforce safe defaults for model-generated content rendering.
     experimental: {
         // Kept intentionally empty; minimal surface area for a hackathon release.
