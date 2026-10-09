@@ -24,7 +24,7 @@ Built for the **MLH Hacktoberfest Hack Day (Navi Mumbai × Piyush Sahu)** and su
 4. **Generate Quiz** — produce question/answer pairs derived from the source.
 5. **Create Action Plan** — turn the content into an ordered list of next steps.
 
-> A hosted demo URL and screenshots will be added here once available. No links are fabricated.
+> [A hosted demo URL](https://universal-ai-copilot.vercel.app/) and screenshots will be added here once available. No links are fabricated.
 
 **Run it locally in under a minute:**
 
