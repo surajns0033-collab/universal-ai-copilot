@@ -1,0 +1,25 @@
+{
+    "extends": [
+        "next/core-web-vitals",
+        "prettier"
+    ],
+    "rules": {
+        "no-console": [
+            "warn",
+            {
+                "allow": [
+                    "warn",
+                    "error",
+                    "info"
+                ]
+            }
+        ],
+        "@typescript-eslint/no-unused-vars": "off"
+    },
+    "ignorePatterns": [
+        "node_modules/",
+        ".next/",
+        "coverage/",
+        "*.config.*"
+    ]
+}

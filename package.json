@@ -1,0 +1,62 @@
+{
+    "name": "universal-ai-copilot",
+    "version": "1.0.0",
+    "description": "Upload anything. Understand it. Turn knowledge into action. A multimodal AI copilot that turns unstructured documents and images into structured insights and actionable outputs, powered by Gemma 4 via the Gemini API.",
+    "license": "Apache-2.0",
+    "private": false,
+    "keywords": [
+        "ai",
+        "gemma",
+        "gemini",
+        "multimodal",
+        "open-source",
+        "nextjs",
+        "typescript"
+    ],
+    "engines": {
+        "node": ">=18.18.0"
+    },
+    "scripts": {
+        "dev": "next dev",
+        "build": "next build",
+        "start": "next start",
+        "lint": "next lint",
+        "typecheck": "tsc --noEmit",
+        "test": "vitest run",
+        "test:watch": "vitest",
+        "test:coverage": "vitest run --coverage",
+        "format": "prettier --write .",
+        "format:check": "prettier --check ."
+    },
+    "dependencies": {
+        "@google/genai": "^2.28.0",
+        "next": "15.5.27",
+        "react": "^18.3.1",
+        "react-dom": "^18.3.1",
+        "zod": "^3.23.8"
+    },
+    "devDependencies": {
+        "@testing-library/dom": "^10.4.0",
+        "@testing-library/jest-dom": "^6.5.0",
+        "@testing-library/react": "^16.0.1",
+        "@testing-library/user-event": "^14.5.2",
+        "@types/node": "^20.16.10",
+        "@types/react": "^18.3.11",
+        "@types/react-dom": "^18.3.0",
+        "@vitejs/plugin-react": "^4.3.2",
+        "@vitest/coverage-v8": "^2.1.2",
+        "autoprefixer": "^10.4.20",
+        "eslint": "^8.57.1",
+        "eslint-config-next": "15.5.27",
+        "eslint-config-prettier": "^9.1.0",
+        "jsdom": "^25.0.1",
+        "postcss": "^8.5.29",
+        "prettier": "^3.3.3",
+        "tailwindcss": "^3.4.13",
+        "typescript": "^5.6.3",
+        "vitest": "^2.1.2"
+    },
+    "overrides": {
+        "postcss": "^8.5.29"
+    }
+}
