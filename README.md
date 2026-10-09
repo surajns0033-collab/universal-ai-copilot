@@ -9,15 +9,17 @@ It is not a chat box and it is not a generic AI wrapper. The product *is* the Ge
 Built for the **MLH Hacktoberfest Hack Day (Navi Mumbai × Piyush Sahu)** and submitted to:
 
 - 🏆 **Best Open-Source AI Project** — a category sponsored by DigitalOcean
-- 🌊 **Best Use of DigitalOcean** — this app is containerized and deployed on **DigitalOcean App Platform**
+- 🌊 **Best Use of DigitalOcean** — the app ships a multi-stage container ([`Dockerfile`](Dockerfile)) and a **DigitalOcean App Platform** spec ([`app.yaml`](app.yaml))
 
-> **DigitalOcean usage.** The product is packaged with a multi-stage [`Dockerfile`](Dockerfile) (Next.js `output: 'standalone'` → `node server.js` on port `8080`) and runs on **DigitalOcean App Platform**, which builds the image from this repository, runs the container, performs health checks, and serves it over HTTPS. The deployment spec lives in [`app.yaml`](app.yaml); `GEMINI_API_KEY` is supplied as an encrypted **secret** environment variable and is never committed. The core intelligence is still the **Gemini API** (official `@google/genai` SDK) calling the **Gemma 4** open-weight model. A separate small app, **SnapStudy**, is the **Best Use of Gemma 4** submission.
+> **DigitalOcean usage.** The product is packaged with a multi-stage [`Dockerfile`](Dockerfile) (Next.js `output: 'standalone'` → `node server.js` on port `8080`) and a **DigitalOcean App Platform** spec in [`app.yaml`](app.yaml) (region `blr`, `http_port: 8080`, health check `GET /api/analyze`). App Platform builds the image from this repository, runs the container, performs health checks, and serves it over HTTPS; `GEMINI_API_KEY` is supplied as an encrypted **secret** environment variable and is never committed. The core intelligence is the **Gemini API** (official `@google/genai` SDK) calling the **Gemma 4** open-weight model. A separate small app, **SnapStudy**, is the **Best Use of Gemma 4** submission.
 
-> **Live demo:** a hosted URL will be added here once the App Platform deployment is verified. No links are fabricated — the URL is published only after the health check and a real Gemma 4 call pass.
+> **Live demo:** [**https://universal-ai-copilot.vercel.app/**](https://universal-ai-copilot.vercel.app/) — the current hosted deployment. The App Platform spec above is included for a container-based deploy.
 
 ---
 
 ## Demo
+
+**Live demo:** [**https://universal-ai-copilot.vercel.app/**](https://universal-ai-copilot.vercel.app/)
 
 **Judging flow (60–90 seconds):**
 
@@ -27,13 +29,13 @@ Built for the **MLH Hacktoberfest Hack Day (Navi Mumbai × Piyush Sahu)** and su
 4. **Generate Quiz** — produce question/answer pairs derived from the source.
 5. **Create Action Plan** — turn the content into an ordered list of next steps.
 
-> A hosted demo URL and screenshots will be added here once available. No links are fabricated.
+> The app is live at the URL above. Screenshots are being captured and will be added here.
 
 **Run it locally in under a minute:**
 
 ```bash
-git clone <your-repo-url>
-cd "AITD 3 PROJECT CHALLENGE"
+git clone https://github.com/surajns0033-collab/universal-ai-copilot.git
+cd universal-ai-copilot
 npm install
 cp .env.example .env.local   # then set GEMINI_API_KEY
 npm run dev                  # http://localhost:3000
