@@ -81,15 +81,16 @@ never hardcoded). It performs every action's primary reasoning, reads multimodal
 natively, and its output is parsed, validated, and rendered directly by the application.
 
 ### Category fit — Best Use of DigitalOcean
-> Fill the live URL in after deploying (see the runbook at the end of this file). Do not
-> present a URL until it resolves and the health check passes.
+> The app is currently served from the live Vercel URL below. The DigitalOcean App Platform
+> deployment spec is included in the repository (see the runbook at the end of this file) and
+> is used when deploying the container on App Platform.
 
-Universal AI Copilot is deployed on **DigitalOcean App Platform** using a multi-stage
-`Dockerfile` (`node:20-alpine` → Next.js `output: 'standalone'` → `node server.js` on port
-`8080`). App Platform builds the image from the repository, runs the container, performs
-health checks, and serves the app over HTTPS at the generated domain.
+Universal AI Copilot ships a **DigitalOcean App Platform** deployment spec backed by a
+multi-stage `Dockerfile` (`node:20-alpine` → Next.js `output: 'standalone'` →
+`node server.js` on port `8080`). App Platform builds the image from the repository, runs the
+container, performs health checks, and serves the app over HTTPS at the generated domain.
 
-- **Live URL:** `<FILL AFTER DEPLOY>`
+- **Live URL:** https://universal-ai-copilot.vercel.app/
 - **Health check endpoint:** `GET /api/analyze` → `{ "ok": true, "ready": true, ... }`
 - **Deployment spec:** `app.yaml` (region `blr`, `dockerfile_path: Dockerfile`,
   `http_port: 8080`, `health_check.http_path: /api/analyze`).
