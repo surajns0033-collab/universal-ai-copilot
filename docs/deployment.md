@@ -1,6 +1,6 @@
 # Deployment — Universal AI Copilot
 
-Universal AI Copilot is a standard Next.js 15 application. It deploys to Vercel, DigitalOcean App Platform, or any host that runs Node.js.
+Universal AI Copilot is a standard Next.js 15 application. It deploys to any host that runs Node.js (for example Vercel, or a plain container/VM). It has no dependency on — and has not been tested on — any specific cloud vendor.
 
 ## 1. Requirements
 
@@ -40,13 +40,6 @@ Set these in your hosting provider's **secret store** — never in the repositor
 2. Add the environment variables for Production/Preview/Development.
 3. Deploy — the framework preset handles the build.
 4. Confirm the API route uses the Node runtime (already configured).
-
-### DigitalOcean App Platform
-
-1. Create an App from the repository.
-2. Set the build command to `npm run build` and the run command to `npm start`.
-3. Add the environment variables as **encrypted** app-level variables.
-4. Set the HTTP port to match `PORT`.
 
 ### Any Node host (Docker, VM, etc.)
 

@@ -2,11 +2,11 @@
 
 Event: **MLH Hacktoberfest Hack Day (Navi Mumbai × Piyush Sahu)**
 
-This project targets three categories. Each claim below maps to **actual source code** — no vague "powered by AI" statements.
+This repository is submitted to **one** category — **Best Open-Source AI Project**. The sections below map each quality/technical claim to **actual source code** — no vague "powered by AI" statements. (Event rule: one project is counted in only one category.)
 
 ---
 
-## 1. Best Use of Gemma 4 — Google DeepMind
+## 1. Criterion — Best Use of Gemma 4 (Google DeepMind)
 
 **Claim: Gemma 4 is the core intelligence of the product, not a cosmetic integration.**
 
@@ -25,7 +25,9 @@ This project targets three categories. Each claim below maps to **actual source 
 
 ---
 
-## 2. Best Open-Source AI Project — DigitalOcean
+## 2. Best Open-Source AI Project (category sponsored by DigitalOcean)
+
+> **Sponsor vs. usage.** "DigitalOcean" is only the **sponsor name of this award category**. This project does **not** use any DigitalOcean product, account, or service. The only external integration is the **Gemini API** (official `@google/genai` SDK) calling the **Gemma 4** open-weight model.
 
 **Claim: a genuinely open, inspectable, and reusable AI project.**
 
@@ -45,7 +47,7 @@ This project targets three categories. Each claim below maps to **actual source 
 
 ---
 
-## 3. Best Use of Gemini API — Event Prize
+## 3. Criterion — Best Use of Gemini API (Event Prize)
 
 **Claim: the Gemini API is used in the actual production inference path.**
 
@@ -65,8 +67,10 @@ This project targets three categories. Each claim below maps to **actual source 
 
 ## Summary
 
+**Submitted category: Best Open-Source AI Project.** The other two rows show the same codebase satisfying the event's technical criteria; they are not additional submissions.
+
 | Category | Single strongest piece of evidence |
 | --- | --- |
 | Best Use of Gemma 4 | Multimodal inline-data call to `gemma-4-26b-a4b-it` in [`gemma-client.ts`](../src/lib/ai/gemma-client.ts), grounded by [`prompts/base.ts`](../src/lib/ai/prompts/base.ts). |
-| Best Open-Source AI Project | Apache-2.0 [`LICENSE`](../LICENSE) + layered, tested, documented [`src/lib/ai`](../src/lib/ai) + contribution guides. |
+| **Best Open-Source AI Project (submitted)** | Apache-2.0 [`LICENSE`](../LICENSE) + layered, tested, documented [`src/lib/ai`](../src/lib/ai) + contribution guides. |
 | Best Use of Gemini API | `@google/genai` `models.generateContent` with `application/json` output on the production path, server-side only. |

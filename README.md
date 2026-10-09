@@ -6,11 +6,11 @@ Universal AI Copilot is an open-source, multimodal knowledge-to-action workspace
 
 It is not a chat box and it is not a generic AI wrapper. The product *is* the Gemma 4 reasoning step: content goes in, understanding comes out.
 
-Built for the **MLH Hacktoberfest Hack Day (Navi Mumbai × Piyush Sahu)**, targeting three categories:
+Built for the **MLH Hacktoberfest Hack Day (Navi Mumbai × Piyush Sahu)** and submitted to **one** category:
 
-- 🏆 **Best Use of Gemma 4** — Google DeepMind
-- 🏆 **Best Open-Source AI Project** — DigitalOcean
-- 🏆 **Best Use of Gemini API** — Event Prize
+- 🏆 **Best Open-Source AI Project** — a category sponsored by DigitalOcean
+
+> **Clarification on DigitalOcean.** "DigitalOcean" appears only as the **sponsor name of the award category**. This project does **not** use any DigitalOcean product, API, account, or service. The only external integrations are the **Gemini API** (official `@google/genai` SDK) and the **Gemma 4** open-weight model. Per the event rule (one project = one category), this repository is the **Open-Source** submission; a separate small app, **SnapStudy**, is the **Best Use of Gemma 4** submission.
 
 ---
 
@@ -248,8 +248,8 @@ flowchart TB
 ### Install & run
 
 ```bash
-git clone <your-repo-url>
-cd "AITD 3 PROJECT CHALLENGE"
+git clone https://github.com/surajns0033-collab/universal-ai-copilot.git
+cd universal-ai-copilot
 npm install
 cp .env.example .env.local   # set GEMINI_API_KEY
 npm run dev                  # http://localhost:3000
@@ -303,7 +303,7 @@ Coverage spans file validation, base64 encoding, text/JSON utilities, prompt com
 
 ## Deployment
 
-A standard Next.js project — deploy to Vercel, DigitalOcean App Platform, or any Node host.
+A standard Next.js project — deploy to any Node host (e.g. Vercel, or a plain container/VM). No vendor-specific services are required.
 
 1. Set the environment variables from [Configuration](#configuration) in your provider's **secret store**.
 2. Build and start:
@@ -342,29 +342,21 @@ Full notes and troubleshooting: [`docs/deployment.md`](docs/deployment.md).
 └── README.md
 ```
 
-## Hackathon category alignment
+## Hackathon submission
 
-Every statement below corresponds to actual source code.
+Submitted to a single category: **Best Open-Source AI Project** (event rule: one project is counted in only one category). Every claim below maps to actual source code.
 
-### Best Use of Gemma 4
-
-- Gemma 4 is the **actual core model** and the default runtime intelligence (`GEMMA_MODEL=gemma-4-26b-a4b-it`).
-- **Multimodal content is processed** — images and PDFs are sent as native inline data in [`gemma-client.ts`](src/lib/ai/gemma-client.ts).
-- The model **powers the product's primary AI actions** through action-specific prompts in [`src/lib/ai/prompts`](src/lib/ai/prompts).
-- Its output is **used directly by the application** — parsed and validated by [`parser.ts`](src/lib/ai/parser.ts) + [`schemas.ts`](src/lib/ai/schemas.ts), then rendered in the UI.
-
-### Best Open-Source AI Project
+**Why it qualifies as open source:**
 
 - Public source repository, **Apache-2.0** licensed ([`LICENSE`](LICENSE)).
-- Runs on **open-weight Gemma 4**.
-- **AI is a core product component**, not an add-on.
-- The code is **inspectable and reusable** — modular layers, a dedicated AI abstraction ([`src/lib/ai`](src/lib/ai)), documented, and tested. Contribution guidance in [`CONTRIBUTING.md`](CONTRIBUTING.md).
+- Runs on the **open-weight Gemma 4** model family.
+- **AI is the core product component**, not an add-on — the model performs the product's primary reasoning work.
+- The code is **inspectable and reusable** — modular layers, a dedicated AI abstraction ([`src/lib/ai`](src/lib/ai)), documented and tested. Contribution guidance in [`CONTRIBUTING.md`](CONTRIBUTING.md).
 
-### Best Use of Gemini API
+**How the model is used** (implementation detail, not separate submissions):
 
-- The **Gemini API is used in the actual production inference path** via the official `@google/genai` SDK.
-- **Content and instructions are sent to the API** (inline data + action-specific prompt) in [`gemma-client.ts`](src/lib/ai/gemma-client.ts).
-- **Gemma 4 produces results used directly by the application** — the structured JSON is validated and surfaced without manual post-processing.
+- The **Gemini API** (official `@google/genai` SDK) is the single, server-side inference path, called from [`gemma-client.ts`](src/lib/ai/gemma-client.ts).
+- **Gemma 4** (`gemma-4-26b-a4b-it`) performs the reasoning: multimodal content is sent as inline data and the validated JSON result is used directly by the app.
 
 Full detail with file references: [`docs/hackathon-category-alignment.md`](docs/hackathon-category-alignment.md).
 
