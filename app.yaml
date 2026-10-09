@@ -1,8 +1,17 @@
 # DigitalOcean App Platform spec — Universal AI Copilot
+#
+# Instance size is basic-xxs, which is DigitalOcean's FREE App Platform tier.
+#
 # Deploy options:
-#   A) CLI (needs a DO token):  doctl apps create --spec app.yaml
-#   B) Web UI (no token/card):  App Platform -> Create App -> import the GitHub
-#      repo -> choose "Dockerfile" -> add the env vars below -> Deploy
+#   A) One command (no doctl needed, uses the DO REST API):
+#        npm run deploy:do            # interactive, hidden key prompts
+#      or, with doctl installed:
+#        doctl apps create --spec app.yaml
+#   B) Web UI (no token needed):  App Platform -> Create App -> import the public
+#      GitHub repo -> choose "Dockerfile" -> set HTTP port 8080 and the env vars
+#      below -> Deploy
+#
+# Full runbook: docs/deploy-digitalocean.md
 name: universal-ai-copilot
 region: blr
 services:

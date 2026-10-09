@@ -41,6 +41,27 @@ Set these in your hosting provider's **secret store** — never in the repositor
 3. Deploy — the framework preset handles the build.
 4. Confirm the API route uses the Node runtime (already configured).
 
+### DigitalOcean App Platform (free tier)
+
+App Platform builds the repository's [`Dockerfile`](../Dockerfile) and runs it on the free
+`basic-xxs` instance size.
+
+1. Create a DigitalOcean **Personal Access Token** with read + write scope.
+2. Run the one-command deploy — it uses the DigitalOcean REST API, so `doctl` is **not**
+   required:
+   ```bash
+   npm run deploy:do
+   ```
+   Paste the token and `GEMINI_API_KEY` at the hidden prompts; nothing you paste is echoed.
+3. Or import the public repository in the App Platform **web UI** (build type **Dockerfile**,
+   HTTP port **8080**, instance size **basic-xxs**, health check `GET /api/analyze`) and add the
+   same environment variables.
+4. The full runbook, including verification and troubleshooting, is in
+   [`deploy-digitalocean.md`](deploy-digitalocean.md).
+
+The repository's [`app.yaml`](../app.yaml) matches these settings and can also be used with the
+DigitalOcean CLI (`doctl apps create --spec app.yaml`).
+
 ### Any Node host (Docker, VM, etc.)
 
 1. Build: `npm install && npm run build`.

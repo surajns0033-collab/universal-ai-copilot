@@ -81,16 +81,19 @@ never hardcoded). It performs every action's primary reasoning, reads multimodal
 natively, and its output is parsed, validated, and rendered directly by the application.
 
 ### Category fit — Best Use of DigitalOcean
-> The app is currently served from the live Vercel URL below. The DigitalOcean App Platform
-> deployment spec is included in the repository (see the runbook at the end of this file) and
-> is used when deploying the container on App Platform.
+> Two deployments of the same codebase: the primary live demo runs on Vercel, and the identical
+> container is deployed to **DigitalOcean App Platform on the free `basic-xxs` tier** using the
+> one-command runbook (`npm run deploy:do`, see [`deploy-digitalocean.md`](deploy-digitalocean.md)).
 
 Universal AI Copilot ships a **DigitalOcean App Platform** deployment spec backed by a
 multi-stage `Dockerfile` (`node:20-alpine` → Next.js `output: 'standalone'` →
 `node server.js` on port `8080`). App Platform builds the image from the repository, runs the
 container, performs health checks, and serves the app over HTTPS at the generated domain.
 
-- **Live URL:** https://universal-ai-copilot.vercel.app/
+- **Live URL (Vercel demo):** https://universal-ai-copilot.vercel.app/
+- **DigitalOcean App Platform (free `basic-xxs` tier):** deploy with `npm run deploy:do`; the
+  generated `*.ondigitalocean.app` domain is the container deployment. Runbook:
+  [`deploy-digitalocean.md`](deploy-digitalocean.md).
 - **Health check endpoint:** `GET /api/analyze` → `200`
   `{ "success": true, "data": { "ready": true, "model": "gemma-4-26b-a4b-it", "maxUploadBytes": 15728640 } }`
 - **Deployment spec:** `app.yaml` (region `blr`, `dockerfile_path: Dockerfile`,
@@ -173,25 +176,31 @@ npm run dev                    # http://localhost:3000
 
 ---
 
-## DigitalOcean deployment runbook (web UI — no CLI token or card required)
+## DigitalOcean deployment runbook
 
-`doctl` is not authenticated and the DO API token is gated behind a payment method, so the
-cardless path is the App Platform web UI, which builds straight from GitHub:
+Full runbook: [`deploy-digitalocean.md`](deploy-digitalocean.md). The target is **App Platform
+on the free `basic-xxs` instance size**.
+
+**Path A — one command (needs a DO token; `doctl` not required):**
+
+```bash
+npm run deploy:do     # hidden prompts for the DO token + GEMINI_API_KEY
+```
+
+The script calls the DigitalOcean REST API v2 directly, creates the app if missing, updates it
+if it already exists, and prints the generated `*.ondigitalocean.app` live URL.
+
+**Path B — App Platform web UI (no token):**
 
 1. Sign in at https://cloud.digitalocean.com and open **Apps → Create App**.
-2. Under **Source**, choose **GitHub** and authorize DigitalOcean for the
-   `surajns0033-collab` account.
-3. Select the repository (`universal-ai-copilot`) and branch `main`.
-4. DigitalOcean detects the `Dockerfile` (via `app.yaml` / `Dockerfile` in the repo root).
-   Keep **HTTP port 8080**.
-5. Add environment variables:
-   - `GEMINI_API_KEY` — mark as **secret** (encrypted), paste the Gemini API key.
-   - `GEMMA_MODEL` = `gemma-4-26b-a4b-it`
-   - `MAX_UPLOAD_MB` = `15`
-   - `AI_REQUEST_TIMEOUT_MS` = `45000`
-6. Pick the **Basic / smallest** instance and the **Bangalore (blr)** region.
-7. Create the app. Wait for the build and health check to pass.
-8. Open the generated `*.ondigitalocean.app` URL and confirm:
-   - `GET /api/analyze` returns `{ "ok": true, "ready": true }`
+2. Under **Source**, choose **GitHub** and select the **public** repository
+   `surajns0033-collab/universal-ai-copilot`, branch `main`.
+3. Build type **Dockerfile**, **HTTP port 8080**.
+4. Add environment variables: `GEMINI_API_KEY` (**secret** / encrypted), `GEMMA_MODEL`
+   = `gemma-4-26b-a4b-it`, `MAX_UPLOAD_MB` = `15`, `AI_REQUEST_TIMEOUT_MS` = `45000`.
+5. Instance size **basic-xxs** (free), region **blr**, health check `GET /api/analyze`.
+6. Create the app, wait for the build + health check to pass, then verify:
+   - `GET /api/analyze` → `200 { "success": true, "data": { "ready": true, "model": "gemma-4-26b-a4b-it", "maxUploadBytes": 15728640 } }`
    - A real upload returns `200` with a Gemma 4 result.
-9. Paste the verified live URL into the "Best Use of DigitalOcean" section above, and commit.
+7. Record the verified `*.ondigitalocean.app` URL alongside the Vercel demo in the
+   "Best Use of DigitalOcean" section above, and commit.

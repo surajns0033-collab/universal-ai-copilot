@@ -51,6 +51,9 @@ yarn-error.log*
 # AI-agent tooling artifacts — must not ship in the product repository
 /.agents/
 
+# DigitalOcean local deploy artifacts (tokens are never written to disk by the tooling)
+.do/
+
 # Local helper scripts and AI-agent artifacts (not part of the product)
 /dokey.ps1
 /dokey.cmd
